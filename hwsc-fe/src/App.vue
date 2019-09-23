@@ -6,34 +6,74 @@
  * @LastEditors: Please set LastEditors
  -->
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+	<div id="app">
     <router-view/>
-  </div>
+		<footer>
+			<div v-for="page of pages" @click="gotoPage(page)" :class="{current:page === currentPage }"><span style="font-size: 0.5rem;" v-bind:class="page.icon"></span>{{page.text}}</div>
+		</footer>
+	</div>
 </template>
-
-<style>
-#app {
-  font-size: 0.16rem;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<script>
+	export default {
+		name:'#app',
+		data(){
+			return {
+				currentPage : undefined,
+				pages: [
+					{name:'home',text:'首页',path:'/',icon:'iconfont icon-shouye'},
+					{name:'category',text:'分类',path:'/category',icon:'iconfont icon-fenlei'},
+					{name:'content',text:'发现',path:'/content',icon:'iconfont icon-faxian'},
+					{name:'cart',text:'购物车',path:'/cart',icon:'iconfont icon-gouwuche'},
+					{name:'personal',text:'我的',path:'/personal',icon:'iconfont icon-wode'}
+				]
+			}
+		},
+		mounted(){
+			for (let page of this.pages) {
+        let pathname;
+        if (location.hash.startsWith('#')) {
+          pathname = location.hash.substr(1);
+        } else {
+          pathname = location.pathname;
+        }
+        if (page.path === pathname) {
+          this.currentPage = page;
+          break;
+        }
+				}
+		},
+		methods:{
+			gotoPage(page){
+				this.currentPage = page;
+				this.$router.push({name:page.name});
+			}
+		}
+	}
+</script>
+<style scoped>
+	#app{
+		width:100%;
+		height:100%;
+		position: relative;
+	}
+	footer {
+		position: absolute;
+		width:100%;
+		height:1.2rem;
+		bottom: 0rem;
+		display: flex;
+		font-size: 0.25rem;
+		font-weight: bold;
+		box-shadow: -1px -1px 5px lightgray;
+		justify-content: space-around;
+	}
+	footer > div {
+		display:flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.current{
+		color:#a1070f;
+	}
 </style>
