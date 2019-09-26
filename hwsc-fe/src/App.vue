@@ -15,14 +15,14 @@
 </template>
 <script>
 	export default {
-		name:'#app',
+		name:'app',
 		data(){
 			return {
 				currentPage : undefined,
 				pages: [
 					{name:'home',text:'首页',path:'/',icon:'iconfont icon-shouye'},
-					{name:'category',text:'分类',path:'/category',icon:'iconfont icon-fenlei'},
-					{name:'content',text:'发现',path:'/content',icon:'iconfont icon-faxian'},
+					{name:'category',text:'分类',path:'/category',icon:'iconfont icon-leimupinleifenleileibie'},
+					{name:'content',text:'发现',path:'/contents',icon:'iconfont icon-faxian'},
 					{name:'cart',text:'购物车',path:'/cart',icon:'iconfont icon-gouwuche'},
 					{name:'personal',text:'我的',path:'/personal',icon:'iconfont icon-wode'}
 				]
@@ -57,7 +57,7 @@
 		position: relative;
 	}
 	footer {
-		position: absolute;
+		position: fixed;
 		width:100%;
 		height:1.2rem;
 		bottom: 0rem;

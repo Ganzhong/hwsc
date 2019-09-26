@@ -35,6 +35,11 @@ export default new Router({
 			path: '/personal',
 			name: 'personal',
 			component: () => import(/* webpackChunkName: "about" */ './views/Personal.vue')
+		},
+		{
+			path: '/testa',
+			name: 'testa',
+			component: () => import(/* webpackChunkName: "about" */ './component/xiangqing.vue')
 		}
   ]
 })
