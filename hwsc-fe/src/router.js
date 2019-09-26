@@ -1,21 +1,29 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-23 15:19:03
+ * @LastEditTime: 2019-09-26 22:23:02
+ * @LastEditors: Please set LastEditors
+ */
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/Home.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home
+
     },
     {
-      path: '/category',
-      name: 'category',
+      path: "/category",
+      name: "category",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -40,6 +48,25 @@ export default new Router({
 			path: '/testa',
 			name: 'testa',
 			component: () => import(/* webpackChunkName: "about" */ './component/xiangqing.vue')
-		}
+    },
+    
+    {
+      path: "/jieshuan",
+      name: "jieshuan",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./components/jieshuan.vue")
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./components/login.vue")
+    },
+    {
+      path: "/msglogin",
+      name: "msglogin",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./components/msglogin.vue")
+    },
   ]
-})
+});

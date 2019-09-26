@@ -1,65 +1,131 @@
 /*
  * @Description: In User Settings Edit
  * @Author: your name
- * @Date: 2019-09-18 17:25:54
- * @LastEditTime: 2019-09-23 15:31:41
+ * @Date: 2019-09-05 08:48:14
+ * @LastEditTime: 2019-09-26 16:36:19
  * @LastEditors: Please set LastEditors
  */
-const fs = require('fs');
-const path = require('path');
+const mex = require("express");
+const mparser = require("body-parser");
+const app = mex();
+const path = require("path");
+const crypto = require("crypto");// 加密模块
+//链接数据库
+const opt = require("./test-db");
+const jwt = require('jsonwebtoken');
 
-const express = require('express');
-// 本文件有后端程序猿 编写 给前端程序猿 提供服务
-const app = express();
+app.use(mparser.json());
+app.use(mex.static(path.join(__dirname, "public")));
 
-const products = {
-    '111': {
-        name: '酵素梅',
-        price: 776,
-        pic: 'https://img.alicdn.com/imgextra/i2/725677994/O1CN01WGLTAb28vIi0eJ8iD_!!725677994-0-sm.jpg_60x60q90.jpg',
-        desc: `【2盒装】姿美堂酵素粉水果果蔬台湾水果果蔬发酵非酵素梅 40袋 多盒装 更划算，肠净腰细不长膘, 送货范围仅限汕头、云浮、汕尾、揭阳、中山、珠海、东莞、梅州、茂名、清远、广州、湛江、惠州、深圳、佛山、阳江、河源、肇庆、韶关、江门、潮州地区(生鲜类别仅限部分地区)
+   //设置操作权限相关*************
+const cookieParser = require('cookie-parser'); // npm install cookie-parser --save
+app.use(cookieParser());  // 启用 cookie 解析 中间件
+const whitelist = [
+  //设置白名单
+  "/goods/getlist",
+  "/goods/registe",
+  "/goods/login",
+  "/goods/insertgoodslist",
+  "/goods/insertgoodslist2",//加多条数据 
+];
+app.use(function(req, res, next) { //中间键
+  if (whitelist.indexOf(req.url) !== -1) {
+    // 如果在白名单里的 服务 可以随意访问 不需要tokne 验证
+    next();
+  } else {
+    jwt.verify(req.cookies.token, "abcdef", async function (err, user) {
+      console.log('0000000000000000');
+      console.log(req.cookies.token);
+      
+      
+      if (err) {
+        res.send({
+          success: false,
+          msg: "您无权限操作"
+        });
+        return;
+      }
 
-支付方式
-检测到您当前处于非安全网络环境，部分商品信息可能不准确，请在交易支付页面再次确认商品价格信息。`
-    },
-    '222': {
-        name: '福临门',
-        price: 76,
-        pic: 'https://img.alicdn.com/imgextra/i3/725677994/O1CN012BPxay28vIh00Nybt_!!725677994.jpg_60x60q90.jpg',
-        desc: `福临门 葵花籽清香食用植物调和油 5L/桶 健康食用油 送货范围仅限汕头、云浮、汕尾、揭阳、中山、珠海、东莞、梅州、茂名、清远、广州、湛江、惠州、深圳、佛山、阳江、河源、肇庆、韶关、江门、潮州地区(生鲜类别仅限部分地区)
-
-支付方式 
-检测到您当前处于非安全网络环境，部分商品信息可能不准确，请在交易支付页面再次确认商品价格信息。`
-    }
-}
-
-app.get('/hwsc/list', function (req, res) {
-
-    // setTimeout(function () {
-        res.send([
-            {id: '111', name: '酵素梅', price: 776, pic: 'https://img.alicdn.com/imgextra/i2/725677994/O1CN01WGLTAb28vIi0eJ8iD_!!725677994-0-sm.jpg_60x60q90.jpg'},
-            {id: '222', name: '福临门', price: 76, pic: 'https://img.alicdn.com/imgextra/i3/725677994/O1CN012BPxay28vIh00Nybt_!!725677994.jpg_60x60q90.jpg'},
-        ])
-    // }, 1000)
+      next();
+    });
+  }
+});
+ //设置操作权限相关*************
+//查数据
+app.get("/goods/getlist", async function(req, res) {
+  let mlist = await opt.getgoodslist({}, 0, 6); //第一页(0),只显示6条
+  console.log(mlist);
+  res.send(mlist);
 });
 
-app.get('/hwsc/detail', function (req, res) {
-    // setTimeout(() => {
-        let ret = {};
-        if (req.query.pid in products) {
-            ret.status = 10000;
-            ret.msg = '成功获取数据';
-            ret.product_detail = products[req.query.pid];
-        } else {
-            ret.status = 10001;
-            ret.msg = '没有数据'
-        }
-        res.send(ret);
-    // }, 3000);
-
-
+//增数据多条
+app.post("/goods/insertgoodslist2", async function (req, res) {
+  let s = await opt.insertgoodslist2(req.body);
+  res.send(s);
 });
 
-app.listen(8000, function () { 
-    console.log('8000已启动.......')
+//增数据单条
+app.post("/goods/insertgoodslist", async function (req, res) {
+  let s = await opt.insertgoodslist(req.body);
+  res.send(s);
+});
+
+//改 {name: '小小'}, {$set: {name: '小郭'}});
+app.post("/goods/updategoodslist", async function (req, res) {
+  let a = req.body.a;
+  let b = req.body.b;
+  let s = await opt.updategoodslist(a,b);
+  res.send(s);
+});
+
+//删
+//给条件(参数) {age:{$gt:11}}
+app.post("/goods/removegoodslist", async function(req, res) {
+  let s = await opt.removegoodslist(req.body);
+  res.send(s);
+});
+//注册
+app.post("/goods/registe", async function(req, res) {
+  let md5 = crypto.createHash("md5");
+  req.body.pw = md5.update(req.body.pw).digest("hex");
+  let s = await opt.insertuser(req.body);
+  res.send(req.body);
+});
+//登录
+app.post("/goods/login", async function(req, res) {
+  let md5 = crypto.createHash("md5");
+  req.body.pw = md5.update(req.body.pw).digest("hex"); //转成md5
+  let sel = { username: req.body.username, pw: req.body.pw }; //接到传过来的参数
+  let userinfo = await opt.userlogin(sel, 0, 1); //给查找的条件 第一页(0),只显示两条
+  if (userinfo.length === 1 && req.body.pw === userinfo[0].pw) {
+    //转的md5与数据库对比
+    //设置操作权限相关
+    jwt.sign(userinfo[0], "abcdef", function(err, token) { //登录成功后就存cookie
+      if (err) {
+        res.send({
+          login_ok: true,
+          msg: err.message
+        });
+        return;
+      }
+      res.cookie("token", token);
+      res.send({
+        msg: "登录成功",
+        login_ok: true
+      });
+    });
+    return;
+
+  } else {
+    res.send({
+      msg: "登录失败"
+    });
+  }
+});
+
+app.listen(6001, function(e) {
+  if (e) {
+    return;
+  }
+  console.log("服务已启动 6001.....");
 });
