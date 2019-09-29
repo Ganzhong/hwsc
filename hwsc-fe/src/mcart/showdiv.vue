@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-26 20:28:39
- * @LastEditTime: 2019-09-28 20:10:24
+ * @LastEditTime: 2019-09-29 17:45:21
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -62,7 +62,7 @@ export default {
       {
         name: "荣耀二合一数据线",
         picUrl:
-          "https://res.vmallres.com/pimages/product/6901443147755/428_428_1554944894934mp.png",
+          "https://res.vmallres.com/pimages/product/GB3102030009801/428_428_1561617948285mp.png",
         desc: "荣耀二合一数据线",
         price: 49,
         count: 1
@@ -78,7 +78,7 @@ export default {
       {
         name: "荣耀移动电源2 10000mAh(Max 18W) Type-c快充...",
         picUrl:
-          "https://res.vmallres.com/pimages/product/6901443277049/142_142_1552376324950mp.png",
+          "https://res.vmallres.com/pimages/product/6901443293995/142_142_1553656554405mp.png",
         desc: "荣耀移动电源2 10000mAh(Max 18W) Type-c快充...",
         price: 100,
         count: 1
@@ -94,7 +94,7 @@ export default {
       {
         name: "荣耀FlyPods青春版 真无线耳机(铃兰白)",
         picUrl:
-          "https://res.vmallres.com/pimages/product/6901443270385/428_428_1545268730575mp.png",
+          "https://res.vmallres.com/pimages/product/6901443185191/428_428_1553940469245mp.png",
         desc: "荣耀FlyPods青春版 真无线耳机(铃兰白)",
         price: 349,
         count: 1

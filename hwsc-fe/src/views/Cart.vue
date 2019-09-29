@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 21:07:47
- * @LastEditTime: 2019-09-28 19:55:12
+ * @LastEditTime: 2019-09-29 16:19:23
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -25,7 +25,8 @@
         </ul>
       </section>
     </div>
-    <cartlist v-show="!show"></cartlist>
+    
+    <cartlist v-if="!show"></cartlist>
   </div>
 </template>
 <script>
@@ -42,11 +43,17 @@ export default {
     };
   },
   mounted() {
+    const _this = this;
     axios
-      .get("/goods/getlist")
+      .get("/goods/getlist2")
       .then(res => {
         this.datalist = res.data;
-          this.show = res.data? true :false; //查看有没有数据有就显示列表没有就显示空购物车
+        
+          _this.show = (res.data.length > 6)? false :true; //查看有没有数据有就显示列表没有就显示空购物车
+          console.log('====>')
+        console.log(_this.show);
+        console.log(res.data.length);
+          
       })
       .catch(function(e) {
         console.log(e);
@@ -105,6 +112,13 @@ console.log(this.$refs.desc[i].desc)
      
     }
   },
+    beforeCreate(){console.log("=====beforeCreate==...=====");},
+  created(){console.log("=====created=...====");},
+  beforeMount(){console.log("=====beforeMount==...===");},
+  beforeUpdate(){console.log("=====beforeUpdate==...===");},
+  updated(){console.log("=====updated==...===");},
+  beforeDestroy(){console.log("=====beforeDestroy==...===");},
+  destroyed(){console.log("=====destroyed==...===");},
   components: {
     hcart,
     cartlist

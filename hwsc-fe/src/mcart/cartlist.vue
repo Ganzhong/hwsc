@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-24 16:01:11
- * @LastEditTime: 2019-09-28 20:17:42
+ * @LastEditTime: 2019-09-29 17:47:11
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -47,12 +47,12 @@
               <span>华为小天鹅蓝牙免提音箱 ...</span>
               <span style="margin-left: 1rem;">x 1</span>
             </div>
-            <div style="float:left;width: 100%;float: left;margin-top: 0.3rem; ">
-              <p style="text-align: center;font-weight: bold;font-size: 0.5rem;">优惠搭配</p>
+            <div v-show="mli.price>350" style="float:left;width: 100%;float: left;margin-top: 0.3rem; ">
+              <p style="text-align: center;font-weight: bold;font-size: 0.34rem;">优惠搭配</p>
               <ul class="mul2" @click="mshow">
                 <li>
                   <img
-                    src="https://res.vmallres.com/pimages/product/6901443277049/142_142_1552376324950mp.png"
+                    src="https://res.vmallres.com/pimages/product/6901443293995/142_142_1553656554405mp.png"
                   />
                   <span class="sheng">省40</span>
                   <span>+</span>
@@ -66,14 +66,14 @@
                 </li>
                 <li>
                   <img
-                    src="https://res.vmallres.com/pimages/product/6901443252435/142_142_1552894370725mp.jpg"
+                    src="https://res.vmallres.com/pimages/product/GB3102030009801/428_428_1561617948285mp.png"
                   />
                   <span class="sheng">省12</span>
                   <span>+</span>
                 </li>
                 <li>
                   <img
-                    src="https://res.vmallres.com/pimages/product/6901443288250/142_142_1556098192033mp.png"
+                    src="https://res.vmallres.com/pimages/product/6901443266425/142_142_1545040924753mp.png"
                   />
                   <span class="sheng">省36</span>
                   <span>+</span>
@@ -87,7 +87,7 @@
                 </li>
                 <li>
                   <img
-                    src="https://res.vmallres.com/pimages/product/6901443275465/142_142_1546411816762mp.png"
+                    src="https://res.vmallres.com/pimages//product/6901443314836/group//800_800_1560224039566.png"
                   />
                   <span class="sheng">省10</span>
                 </li>
@@ -104,7 +104,7 @@
         </footer>
       </div>
     </div>
-    <showdiv v-show="showdiv"></showdiv>
+    <showdiv v-show="mshowdiv"></showdiv>
   </div>
 </template>
 <script>
@@ -114,24 +114,24 @@ import showdiv from "./showdiv";
 export default {
   data() {
     return {
-      showdiv: false,
+      mshowdiv: false,
       datalist: [],
       list: []
     };
   },
-  updated(){
-    axios
-      .get("/goods/getlist2") //只显示增加到第六条的数据
-      .then(res => {
-        this.list = res.data.slice(6); //去掉前6个再显示
-      })
-      .catch(function(e) {
-        console.log(e);
-      });
+  // updated(){
+  //   axios
+  //     .get("/goods/getlist2") //只显示增加到第六条的数据
+  //     .then(res => {
+  //       this.list = res.data.slice(6); //去掉前6个再显示
+  //     })
+  //     .catch(function(e) {
+  //       console.log(e);
+  //     });
 
-  },
+  // },
   mounted() {
-        axios
+    axios
       .get("/goods/getlist2") //只显示增加到第六条的数据
       .then(res => {
         this.list = res.data.slice(6); //去掉前6个再显示
@@ -142,8 +142,18 @@ export default {
 
     this.$eventBus.$on("closeshowdiv", e => {
       //接收广播显示carlist
-      this.showdiv = e.showdiv;
+      this.mshowdiv = e.showdiv;
+      //同时请求最新数据
+      axios
+        .get("/goods/getlist2") //只显示增加到第六条的数据
+        .then(res => {
+          this.list = res.data.slice(6); //去掉前6个再显示
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     });
+    console.log("=====mounted=====");
   },
   methods: {
     // 拿到token判断有没有登录
@@ -172,8 +182,8 @@ export default {
       this.list[i].count++;
     },
     mshow() {
-      this.showdiv = !this.showdiv;
-      
+      this.mshowdiv = !this.mshowdiv;
+
       this.$eventBus.$emit("closefooter", {
         //发广播让footer隐藏
         mclose: false
@@ -190,7 +200,37 @@ export default {
         j += i.price * i.count;
       }
       return j;
+    },
+    all_list() {
+      axios
+        .get("/goods/getlist2") //只显示增加到第六条的数据
+        .then(res => {
+          this.list = res.data.slice(6); //去掉前6个再显示
+          return this.list;
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     }
+  },
+  beforeCreate() {
+    console.log("=====beforeCreate=====");
+  },
+  created() {
+    console.log("=====created=====");
+  },
+  beforeMount() {
+    console.log("=====beforeMount=====");
+  },
+  beforeUpdate() {
+    console.log("=====beforeUpdate=====");
+  },
+  // updated(){console.log("=====updated=====");},
+  beforeDestroy() {
+    console.log("=====beforeDestroy=====");
+  },
+  destroyed() {
+    console.log("=====destroyed=====");
   },
   components: {
     showdiv
