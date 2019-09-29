@@ -76,8 +76,9 @@
 		},
 		methods:{
 			totest(shoupic){
-				this.$router.push({name: 'testa'});
-				this.$eventBus.$emit('xiangqing',shoupic.id)
+//				this.$eventBus.$emit('xiangqing',shoupic.id);
+				this.$router.push({name: 'testa',query:{id:shoupic.id}});
+				
 			}
 		}
 	}

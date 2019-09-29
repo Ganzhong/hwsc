@@ -5,7 +5,7 @@
 				<div class="swiper-slide" v-for="msg of msgs"><img v-bind:src="msg.src" /></div>
 
 			</div>
-			<i class="iconfont icon-zuojiantou-tianchong "></i><span class="iconfont icon-iconfontgengduo"></span>
+			<i class="iconfont icon-zuojiantou-tianchong " @click="goback"></i><span class="iconfont icon-iconfontgengduo"></span>
 		</div>
 </template>
 
@@ -59,7 +59,9 @@
 			});
 		},
 		methods: {
-
+		 goback(){
+			  	this.$router.back();
+			  }
 		},
 		components: {
 

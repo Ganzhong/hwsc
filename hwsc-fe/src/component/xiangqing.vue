@@ -48,9 +48,7 @@
 					disableOnInteraction: false,
 				}
 			});*/
-			this.$eventBus.$on('xiangqing',(event)=>{
-				console.log(event);
-			})
+			
 		},
 		methods: {
 			windowScroll () {
