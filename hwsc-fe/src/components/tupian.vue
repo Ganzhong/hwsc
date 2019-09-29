@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--
  * @Description: In User Settings Editim
  * @Author: your name
@@ -5,6 +6,8 @@
  * @LastEditTime: 2019-09-27 09:57:49
  * @LastEditors: Please set LastEditors
  -->
+=======
+>>>>>>> 78119503f28b4d0f6477de5ccaa442fc4bda53d1
 <template>
 	<div class="tupian" @click="goto01">
 		<div class="swiper-container">

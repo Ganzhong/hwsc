@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 15:19:03
- * @LastEditTime: 2019-09-27 16:05:15
+ * @LastEditTime: 2019-09-29 09:05:09
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -32,6 +32,7 @@
 				]
 			}
 		},
+		
   mounted() {
     for (let page of this.pages) {
       let pathname;

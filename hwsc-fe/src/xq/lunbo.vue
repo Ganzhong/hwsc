@@ -45,12 +45,17 @@
 		},
 		mounted() {
 			var swiper = new Swiper('.swiper-container', {
-				spaceBetween: 30,
-				centeredSlides: true,
-				autoplay: {
-					delay: 1000,
-					disableOnInteraction: false,
-				}
+				slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+            delay: 2000,//1秒切换一次
+  },
+
 			});
 		},
 		methods: {
