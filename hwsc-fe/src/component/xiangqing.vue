@@ -40,17 +40,6 @@
 		},
 		mounted() {
 			window.addEventListener('scroll', this.windowScroll);
-			/*var swiper = new Swiper('.swiper-container', {
-				spaceBetween: 30,
-				centeredSlides: true,
-				autoplay: {
-					delay: 4000,
-					disableOnInteraction: false,
-				}
-			});*/
-			this.$eventBus.$on('xiangqing',(event)=>{
-				console.log(event);
-			})
 		},
 		methods: {
 			windowScroll () {
