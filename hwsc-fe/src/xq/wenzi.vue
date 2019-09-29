@@ -50,6 +50,7 @@
 	}
 	.big{
 		width: 100%;
+		height: 4.40rem;
 		padding-left: 0.2rem;
 		padding-right: 0.2rem;
 		box-sizing: border-box;
