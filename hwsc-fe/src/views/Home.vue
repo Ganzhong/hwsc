@@ -1,6 +1,6 @@
 <template>
   <div id="zhuye">
-		<div id="jiantou" @click="goto()">
+		<div id="jiantou" @click="goto()" ref="tutu">
 			<span class="iconfont icon-dingbu" style="font-size: 0.7rem;"></span>
 		</div>
   <header>
@@ -79,13 +79,14 @@
 						this.index = 0;
 					}
 				},2000);
-				window.onscroll = function(){
-					var jiantou = document.getElementById('jiantou');
+				let that  = this;
+				window.onscroll = ()=>{
+					// var jiantou = document.getElementById('jiantou');
 					const scrollTop = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop;
 					if(scrollTop <= 400){
-						jiantou.style.display = 'none';
+						that.$refs.tutu.style.display = 'none';
 					}else{
-						jiantou.style.display = 'block';
+						that.$refs.tutu.style.display = 'block';
 					}
 				}
 			},
@@ -96,6 +97,9 @@
 				todenglu(){
 					this.$router.push({name:'login'});
 				}
+			},
+			beforeDestroy(){
+				window.onscroll = undefined;
 			},
 			components:{
 				daohang,
