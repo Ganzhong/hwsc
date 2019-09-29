@@ -39,7 +39,7 @@
 			}
 		},
 		mounted() {
-			window.addEventListener('scroll', this.windowScroll)
+			window.addEventListener('scroll', this.windowScroll);
 			/*var swiper = new Swiper('.swiper-container', {
 				spaceBetween: 30,
 				centeredSlides: true,
@@ -48,6 +48,9 @@
 					disableOnInteraction: false,
 				}
 			});*/
+			this.$eventBus.$on('xiangqing',(event)=>{
+				console.log(event);
+			})
 		},
 		methods: {
 			windowScroll () {

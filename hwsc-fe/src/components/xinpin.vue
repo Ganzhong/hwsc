@@ -19,7 +19,7 @@
 		<div class="shouji">
 			<h3>手机</h3>
 			<div class="shouji01">
-				<dl v-for="shoupic of shoupics">
+				<dl v-for="shoupic of shoupics" @click="totest(shoupic)">
 					<dt><img :src="shoupic.src" /></dt>
 					<dd>{{shoupic.name}}</dd>
 				</dl>
@@ -50,14 +50,14 @@
 		data(){
 			return{
 				shoupics:[
-					{name:'HUAWEI Mate30',src:'https://res.vmallres.com/pimages/product/6901443331116/428_428_53700717ABF3AC923E6F287B643C236E7732FD9C964FAE1Bmp.png'},
-					{name:'荣耀Play3',src:'https://res.vmallres.com/pimages/product/6901443333400/428_428_FFF52FC8300511223A30ED8401D76D30BCBDBC5A3F75596Amp.png'},
-					{name:'荣耀20S',src:'https://res.vmallres.com/pimages/pages/mobile/frontCategory/1SyGasPAHgSa4TrEoNnb.jpg'},
-					{name:'HUAWEI Mate30...',src:'https://res.vmallres.com/pimages/product/6901443331376/428_428_FAF5BBAB67C16D7426B5B1A2A38F9001DED6D011A0EE9977mp.png'},
-					{name:'HUAWEI',src:'https://res.vmallres.com/pimages/product/6901443316489/428_428_1563781560971mp.png'},
-					{name:'荣耀20',src:'https://res.vmallres.com/pimages/product/6901443304332/428_428_1558244819612mp.png'},
-					{name:'HUAWEI',src:'https://res.vmallres.com/pimages/product/6901443316168/428_428_1561435068797mp.png'},
-					{name:'荣耀9X',src:'https://res.vmallres.com/pimages/product/6901443321339/428_428_1563503515663mp.png'}
+					{id:'1',name:'HUAWEI Mate30',src:'https://res.vmallres.com/pimages/product/6901443331116/428_428_53700717ABF3AC923E6F287B643C236E7732FD9C964FAE1Bmp.png'},
+					{id:'2',name:'荣耀Play3',src:'https://res.vmallres.com/pimages/product/6901443333400/428_428_FFF52FC8300511223A30ED8401D76D30BCBDBC5A3F75596Amp.png'},
+					{id:'3',name:'荣耀20S',src:'https://res.vmallres.com/pimages/pages/mobile/frontCategory/1SyGasPAHgSa4TrEoNnb.jpg'},
+					{id:'4',name:'HUAWEI Mate30...',src:'https://res.vmallres.com/pimages/product/6901443331376/428_428_FAF5BBAB67C16D7426B5B1A2A38F9001DED6D011A0EE9977mp.png'},
+					{id:'5',name:'HUAWEI',src:'https://res.vmallres.com/pimages/product/6901443316489/428_428_1563781560971mp.png'},
+					{id:'6',name:'荣耀20',src:'https://res.vmallres.com/pimages/product/6901443304332/428_428_1558244819612mp.png'},
+					{id:'7',name:'HUAWEI',src:'https://res.vmallres.com/pimages/product/6901443316168/428_428_1561435068797mp.png'},
+					{id:'8',name:'荣耀9X',src:'https://res.vmallres.com/pimages/product/6901443321339/428_428_1563503515663mp.png'}
 				],
 				pinbanpics:[
 					{name:'华为智慧屏',src:'https://res.vmallres.com/pimages/product/6901443331093/428_428_21EEE8FC1E9B970CAA527CC00F668B933528C62FBC4CD1E4mp.png'},
@@ -72,6 +72,12 @@
 					{name:'HUAWEI WATCH...',src:'https://res.vmallres.com/pimages/product/6901443320202/428_428_9F646DC4DD50AD8591CE902EB3438CCFD551FD9D5311E3E9mp.png'},
 					{name:'荣耀手表魔法系列',src:'https://res.vmallres.com/pimages/product/6901443267248/428_428_1540544249192mp.png'}
 				]
+			}
+		},
+		methods:{
+			totest(shoupic){
+				this.$router.push({name: 'testa'});
+				this.$eventBus.$emit('xiangqing',shoupic.id)
 			}
 		}
 	}

@@ -9,7 +9,7 @@
 		<div class="swiper01"><p :style="{color:placeholders[index].color}">{{placeholders[index].name}}</p></div>
 		</div>
 		<div class="denglu"><span class="iconfont icon-xinxi"></span></div>
-		<div><span class="text01">登录</span></div>
+		<div @click="todenglu"><span class="text01">登录</span></div>
 	</header>
 	<daohang></daohang>
 	<tupian></tupian>
@@ -92,6 +92,9 @@
 			methods:{
 				goto(){
 					document.documentElement.scrollTop  = 0;
+				},
+				todenglu(){
+					this.$router.push({name:'login'});
 				}
 			},
 			components:{

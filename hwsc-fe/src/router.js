@@ -67,7 +67,6 @@ export default new Router({
       name: "msglogin",
       component: () =>
         import(/* webpackChunkName: "about" */ "./components/msglogin.vue")
-    },
-
+    }
   ]
 });
