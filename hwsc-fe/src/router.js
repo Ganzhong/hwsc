@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 15:19:03
- * @LastEditTime: 2019-09-26 22:23:02
+ * @LastEditTime: 2019-09-28 15:48:18
  * @LastEditors: Please set LastEditors
  */
 import Vue from "vue";
@@ -51,10 +51,10 @@ export default new Router({
     },
     
     {
-      path: "/jieshuan",
-      name: "jieshuan",
+      path: "/jiesuan",
+      name: "jiesuan",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./components/jieshuan.vue")
+        import(/* webpackChunkName: "about" */ "./components/jiesuan.vue")
     },
     {
       path: "/login",
@@ -68,5 +68,6 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "./components/msglogin.vue")
     },
+
   ]
 });

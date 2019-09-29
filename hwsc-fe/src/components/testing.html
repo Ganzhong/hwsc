@@ -7,16 +7,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
   <!-- Link Swiper's CSS -->
+<<<<<<< HEAD
   <link rel="stylesheet" href="../../public/css/swiper.min.css">
 
   <!-- Demo styles -->
   <style>
 
+=======
+  <link rel="stylesheet" href="../package/css/swiper.min.css">
+
+  <!-- Demo styles -->
+  <style>
+    html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+>>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
     .swiper-container {
       width: 100%;
       height: 100%;
     }
     .swiper-slide {
+<<<<<<< HEAD
+=======
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+>>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
       /* Center slide text vertically */
       display: -webkit-box;
       display: -ms-flexbox;
@@ -41,15 +67,32 @@
       <div class="swiper-slide">Slide 2</div>
       <div class="swiper-slide">Slide 3</div>
       <div class="swiper-slide">Slide 4</div>
+<<<<<<< HEAD
     </div>
   </div>
 
   <!-- Swiper JS -->
   <script src="../../public/swiper.min.js"></script>
+=======
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 10</div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="../package/js/swiper.min.js"></script>
+>>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 
   <!-- Initialize Swiper -->
   <script>
     var swiper = new Swiper('.swiper-container', {
+<<<<<<< HEAD
 			autoplay: {
 			  delay: 1000,
 			  disableOnInteraction: false,
@@ -59,6 +102,13 @@
         el: '.swiper-pagination',
         clickable: true
       }
+=======
+      direction: 'vertical',
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+>>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
     });
   </script>
 </body>

@@ -9,6 +9,9 @@
 		<toubu v-if="flag"></toubu>
 	</transition>
 	
+	
+	<xqt></xqt>
+	
 </div>
 <!--<div>
 	
@@ -22,6 +25,7 @@
 	import lb from '../xq/lunbo.vue';
 	import wen from '../xq/wenzi.vue';
 	import xuanze from '../xq/xuanze.vue';
+	import xqt from  '../xq/xqt.vue';
 	
 	export default {
 		name: 'xiangqing',
@@ -66,7 +70,8 @@
 		lb,
 		wen,
 		xuanze,
-		toubu
+		toubu,
+		xqt
 		}
 	}
 </script>

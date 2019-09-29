@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-04 21:33:23
- * @LastEditTime: 2019-09-25 15:11:40
+ * @LastEditTime: 2019-09-28 19:26:41
  * @LastEditors: Please set LastEditors
  */
 //mongodb数据库 增 删 查 改 的封装 并链接数据库
@@ -42,6 +42,19 @@ async function getgoodslist(filter, pageNo, pageSize) {
     const testDB = client.db(mydb);
     return new Promise(function (resolve, reject) {
         testDB.collection(biao).find(filter).skip(pageNo * pageSize).limit(pageSize).toArray(function (err, result) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(result);
+        });
+    })
+}
+async function getgoodslist2(filter) {
+    const client = await getClient();
+    const testDB = client.db(mydb);
+    return new Promise(function (resolve, reject) {
+        testDB.collection(biao).find(filter).toArray(function (err, result) {
             if (err) {
                 reject(err);
                 return;
@@ -158,6 +171,7 @@ async function userlogin(filter, pageNo, pageSize) {
 
 module.exports = {
     getgoodslist, //查
+    getgoodslist2,//查2
     updategoodslist,//改
     insertgoodslist, //增
     insertgoodslist2, //增2

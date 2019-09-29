@@ -42,7 +42,10 @@
 	export default {
 		data(){
 			return{
+<<<<<<< HEAD
 
+=======
+>>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 				shoupics:[
 					{name:'HUAWEI Mate30',src:'https://res.vmallres.com/pimages/product/6901443331116/428_428_53700717ABF3AC923E6F287B643C236E7732FD9C964FAE1Bmp.png'},
 					{name:'荣耀Play3',src:'https://res.vmallres.com/pimages/product/6901443333400/428_428_FFF52FC8300511223A30ED8401D76D30BCBDBC5A3F75596Amp.png'},

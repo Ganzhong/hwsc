@@ -2,7 +2,7 @@
  * @Description: In User Settings 
  * @Author: your name
  * @Date: 2019-09-23 22:14:38
- * @LastEditTime: 2019-09-26 16:00:12
+ * @LastEditTime: 2019-09-28 17:52:06
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -38,14 +38,14 @@ export default {
   position: fixed;
   top: 0;
   z-index: 999;
-  background: rebeccapurple;
+  background: white;
   width: 7.5rem;
   height: 0.81rem;
   text-align: center;
   line-height: 0.81rem;
 }
 .mheader p {
-  background: rebeccapurple;
+  /* background: white; */
   width: 100%;
   height: 0.81rem;
   font-size: 0.36rem;

@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 21:07:47
- * @LastEditTime: 2019-09-26 16:48:39
+ * @LastEditTime: 2019-09-28 19:55:12
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -19,6 +19,8 @@
             <i class="cart iconfont icon-gouwuche" @click="joincart(index)"></i>
             <p ref="name">{{mlist.name}}</p>
             <p ref="price" style="color:red">￥{{mlist.price}}</p>
+            <p ref="desc" style="display: none;">{{mlist.desc}}</p>
+            <!-- <p ref="desc" >{{mlist.desc}}</p> -->
           </li>
         </ul>
       </section>
@@ -35,7 +37,7 @@ import { addAddress } from "../addgoods"; //导入数据存储的方法(本地)
 export default {
   data() {
     return {
-      show: true,
+      show: true, //默认不显示购物车list
       datalist: []
     };
   },
@@ -44,41 +46,63 @@ export default {
       .get("/goods/getlist")
       .then(res => {
         this.datalist = res.data;
+          this.show = res.data? true :false; //查看有没有数据有就显示列表没有就显示空购物车
       })
       .catch(function(e) {
         console.log(e);
       });
-  },
+
+     this.$eventBus.$emit("closefooter", {
+      //发广播让footer隐藏
+      mclose: true
+    });
+ 
+    },
+  // beforeDestroy: function() {
+  //   //销毁后
+  //   this.$eventBus.$emit("closefooter", {
+  //     //发广播让footer显示
+  //     mclose: false
+  //   });
+
+  // },
   methods: {
     joincart(i) {
+      const _this = this;
       // 点击后隐藏当前显示另一个
-      this.show = !this.show;
-      console.log(this.show);
-      const goods =[ {
-        name: this.$refs.name[i].innerText,
-        picUrl: this.$refs.pic[i].src,
-        desc: "华为,中华有为",
-        price: this.$refs.price[i].innerText.substr(1) * 1,
-        count: 1
-      }];
+      const goods = [
+        {
+          name: this.$refs.name[i].innerText,
+          picUrl: this.$refs.pic[i].src,
+          desc: this.$refs.desc[i].innerText,
+          price: this.$refs.price[i].innerText.substr(1) * 1,
+          count: 1
+        }
+      ];
 
+console.log('--------')
+console.log(this.$refs)
+console.log(this.$refs.desc[i].desc)
       //存本地
       // addAddress(goods);
 
       //从本取出
       // let addressStr = localStorage.getItem('goods_list');
-      
-      // axios
-      //   // .post("/goods/insertgoodslist2", JSON.parse(addressStr))
-      //   .post("/goods/insertgoodslist2", goods) //这个是以数组的方式加入 所以必须传数组
-      //   .then(function(s) {
-      //     if (!s.data.success) {
-      //       alert("对不起,您无权操作....");
-      //     }
-      //   })
-      //   .catch(function(e) {
-      //     console.log(e);
-      //   });
+
+      axios
+        // .post("/goods/insertgoodslist2", JSON.parse(addressStr))
+        .post("/goods/insertgoodslist2", goods) //这个是以数组的方式加入 所以必须传数组
+        .then(function(s) {
+          // if (!s.data.success) {
+          //   alert("对不起,您无权操作....");
+          // }
+              _this.show = !_this.show;
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
+
+     
     }
   },
   components: {

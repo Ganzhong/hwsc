@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-05 08:48:14
- * @LastEditTime: 2019-09-26 16:36:19
+ * @LastEditTime: 2019-09-28 19:27:00
  * @LastEditors: Please set LastEditors
  */
 const mex = require("express");
@@ -23,10 +23,11 @@ app.use(cookieParser());  // 启用 cookie 解析 中间件
 const whitelist = [
   //设置白名单
   "/goods/getlist",
+  "/goods/getlist2",
   "/goods/registe",
   "/goods/login",
   "/goods/insertgoodslist",
-  "/goods/insertgoodslist2",//加多条数据 
+  "/goods/insertgoodslist2",//加多条数据 以数组形式加
 ];
 app.use(function(req, res, next) { //中间键
   if (whitelist.indexOf(req.url) !== -1) {
@@ -54,6 +55,12 @@ app.use(function(req, res, next) { //中间键
 //查数据
 app.get("/goods/getlist", async function(req, res) {
   let mlist = await opt.getgoodslist({}, 0, 6); //第一页(0),只显示6条
+  console.log(mlist);
+  res.send(mlist);
+});
+
+app.get("/goods/getlist2", async function(req, res) {
+  let mlist = await opt.getgoodslist2({}); 
   console.log(mlist);
   res.send(mlist);
 });
