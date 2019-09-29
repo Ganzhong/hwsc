@@ -1,15 +1,15 @@
 <template>
 	<div class="big">
 		<div class="box1">
-			<p>￥{{pages[0].price}}</p>
-			<p>{{pages[0].biaoti}}</p>
-			<p>{{pages[0].biaoti2}}</p>
+			<p>￥{{pages[i].price}}</p>
+			<p>{{pages[i].biaoti}}</p>
+			<p>{{pages[i].biaoti2}}</p>
 		</div>
 		
 		<div class="box2">
-			<p><span>会员专享</span>{{pages[0].youhui}}</p>
-			<p><span>商品赠券</span>{{pages[0].youhui2}}</p>
-			<p><span>赠送积分</span>{{pages[0].youhui3}}</p>
+			<p><span>会员专享</span>{{pages[i].youhui}}</p>
+			<p><span>商品赠券</span>{{pages[i].youhui2}}</p>
+			<p><span>赠送积分</span>{{pages[i].youhui3}}</p>
 			<span>促销</span><i class="iconfont icon-gengduo1"></i>
 		</div>
 	
@@ -22,6 +22,7 @@
 	export default {
 	 		data() {
 			return {
+				i:0,
 				pages: [
 				{path: 'https://res.vmallres.com/pimages/cop/photo/AJ6md0joOgZ8DKQ58fYv.jpg',mas:'来自 HUAWEI P30 系列',
 				 price:999,
@@ -29,10 +30,60 @@
 				 biaoti2:'①V1-V5会员购机限量赠耳机！②晒单限量赠数据线和蓝牙音箱！③赢豪华迪拜游！',
 				 youhui:'V1-V5会员赠AM115耳机',
 				 youhui2:'购机赠衣食住行豪华券包',
-				 youhui3:'购买即赠商城积分，积分可抵现'
+				 youhui3:'购买即赠商城积分，积分可抵现',
+				 id:'0'
 				
-				}
-			
+			},
+			{path: 'https://res.vmallres.com/pimages/cop/photo/AJ6md0joOgZ8DKQ58fYv.jpg',mas:'来自 HUAWEI P30 系列',
+				 price:1000,
+				 biaoti:'荣耀Play3 6.39英寸魅眼全视屏 4000mAh大电池 真4800万AI三摄 麒麟710F自研芯片 全网通4GB+64GB （幻夜黑）',
+				 biaoti2:'①V1-V5会员购机限量赠耳机！②晒单限量赠数据线和蓝牙音箱！③赢豪华迪拜游！',
+				 youhui:'V1-V5会员赠AM115耳机',
+				 youhui2:'购机赠衣食住行豪华券包',
+				 youhui3:'购买即赠商城积分，积分可抵现',
+				 id:'1'
+				
+			},
+			{path: 'https://res.vmallres.com/pimages/cop/photo/AJ6md0joOgZ8DKQ58fYv.jpg',mas:'来自 HUAWEI P30 系列',
+				 price:10213200,
+				 biaoti:'荣耀Play3 6.39英寸魅眼全视屏 4000mAh大电池 真4800万AI三摄 麒麟710F自研芯片 全网通4GB+64GB （幻夜黑）',
+				 biaoti2:'①V1-V5会员购机限量赠耳机！②晒单限量赠数据线和蓝牙音箱！③赢豪华迪拜游！',
+				 youhui:'V1-V5会员赠AM115耳机',
+				 youhui2:'购机赠衣食住行豪华券包',
+				 youhui3:'购买即赠商城积分，积分可抵现',
+				 id:'1'
+				
+			},
+			{path: 'https://res.vmallres.com/pimages/cop/photo/AJ6md0joOgZ8DKQ58fYv.jpg',mas:'来自 HUAWEI P30 系列',
+				 price:102321300,
+				 biaoti:'荣耀Play3 6.39英寸魅眼全视屏 4000mAh大电池 真4800万AI三摄 麒麟710F自研芯片 全网通4GB+64GB （幻夜黑）',
+				 biaoti2:'①V1-V5会员购机限量赠耳机！②晒单限量赠数据线和蓝牙音箱！③赢豪华迪拜游！',
+				 youhui:'V1-V5会员赠AM115耳机',
+				 youhui2:'购机赠衣食住行豪华券包',
+				 youhui3:'购买即赠商城积分，积分可抵现',
+				 id:'1'
+				
+			},
+			{path: 'https://res.vmallres.com/pimages/cop/photo/AJ6md0joOgZ8DKQ58fYv.jpg',mas:'来自 HUAWEI P30 系列',
+				 price:102131200,
+				 biaoti:'荣耀Play3 6.39英寸魅眼全视屏 4000mAh大电池 真4800万AI三摄 麒麟710F自研芯片 全网通4GB+64GB （幻夜黑）',
+				 biaoti2:'①V1-V5会员购机限量赠耳机！②晒单限量赠数据线和蓝牙音箱！③赢豪华迪拜游！',
+				 youhui:'V1-V5会员赠AM115耳机',
+				 youhui2:'购机赠衣食住行豪华券包',
+				 youhui3:'购买即赠商城积分，积分可抵现',
+				 id:'1'
+				
+			},
+			{path: 'https://res.vmallres.com/pimages/cop/photo/AJ6md0joOgZ8DKQ58fYv.jpg',mas:'来自 HUAWEI P30 系列',
+				 price:102131200,
+				 biaoti:'荣耀Play3 6.39英寸魅眼全视屏 4000mAh大电池 真4800万AI三摄 麒麟710F自研芯片 全网通4GB+64GB （幻夜黑）',
+				 biaoti2:'①V1-V5会员购机限量赠耳机！②晒单限量赠数据线和蓝牙音箱！③赢豪华迪拜游！',
+				 youhui:'V1-V5会员赠AM115耳机',
+				 youhui2:'购机赠衣食住行豪华券包',
+				 youhui3:'购买即赠商城积分，积分可抵现',
+				 id:'1'
+				
+			}
 					
 					
 
@@ -40,6 +91,18 @@
 
 			}
 		},
+		mounted(){
+//			this.$eventBus.$on('xiangqing',(event)=>{
+//				this.i = event -1;
+//				console.log('=======8888')
+//				console.log(this.i)
+//			})
+			console.log(this.$route.query.id);
+			this.i = this.$route.query.id - 1;
+		},
+		methods:{
+			
+		}
 		
 	 }
 </script>

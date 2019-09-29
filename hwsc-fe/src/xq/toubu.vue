@@ -1,10 +1,10 @@
 <template>
 		<div class="big">
-			<i class="iconfont icon-zuojiantou1"></i>	
-			<a href="#">商品</a>
-			<a href="#">评价</a>
-			<a href="#">参数</a>
-			<a href="#">详情</a>
+			<i class="iconfont icon-zuojiantou1" @click="goback"></i>	
+			<a @click="aaaaa">商品</a>
+			<a @click="bbbbb">评价</a>
+			<a @click="ccccc">参数</a>
+			<a @click="ddddd">详情</a>
 			
 			<span class="iconfont icon-gengduo1"></span>
 		</div>
@@ -26,6 +26,43 @@
 
 			}
 		},
+		mounted() {
+			window.addEventListener('scroll', this.windowScroll)
+			
+		},
+		methods: {
+			windowScroll () {
+			     // 滚动条距离页面顶部的距离
+			     // 以下写法原生兼容
+			     let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop 
+			      
+			     /* if(scrollTop>150){
+			      	this.flag=true;
+			     
+			      }
+			       	if(scrollTop<150){
+			      	this.flag=false;	
+			      	}*/
+			  
+			  },
+			  aaaaa(){
+			  	document.documentElement.scrollTop=0;
+			  },
+			  bbbbb(){
+			  	document.documentElement.scrollTop=2100;
+			  },
+			  ccccc(){
+			  	document.documentElement.scrollTop=2650;
+			  },
+			  ddddd(){
+			  	document.documentElement.scrollTop=3150;
+			  },
+			  goback(){
+			  	this.$router.back();
+			  }
+
+			
+		}
 		
 	 }
 </script>

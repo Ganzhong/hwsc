@@ -384,7 +384,7 @@ export default {
 .mh0 {
   width: 100%;
   height: 1rem;
-  background: #e22d2f;
+  background: #e63831;
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -427,7 +427,7 @@ export default {
   width: 100%;
   height: 2.6rem;
   margin-top: 0.84rem;
-  background: #e22d2f;
+  background: #e63831;
   border-radius: 0 0 0.5rem 0.5rem;
 }
 .img1 {
@@ -606,10 +606,10 @@ export default {
   width: 0.7rem;
   height: 2.2rem;
   border-radius: 0.1rem;
-  background: red;
+  background: #e95d60;
   line-height: 2.2rem;
   color: white;
-  border-left: dotted 0.1rem red;
+  border-left: dotted 0.05rem red;
   background-clip: padding-box;
   vertical-align: top;
   margin-left: 0.1rem;
