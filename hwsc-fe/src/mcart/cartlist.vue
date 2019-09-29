@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-24 16:01:11
- * @LastEditTime: 2019-09-26 21:01:26
+ * @LastEditTime: 2019-09-28 20:17:42
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -104,13 +104,13 @@
         </footer>
       </div>
     </div>
-    <showdialog v-show="showdiv"></showdialog>
+    <showdiv v-show="showdiv"></showdiv>
   </div>
 </template>
 <script>
 import axios from "axios";
 import { gettoken } from "../addgoods"; //导入数据存储的方法
-import showdialog from "./showdiv";
+import showdiv from "./showdiv";
 export default {
   data() {
     return {
@@ -119,22 +119,38 @@ export default {
       list: []
     };
   },
-  mounted() {
+  updated(){
     axios
-      .get("/goods/getlist") //只显示6条数据 的接口
+      .get("/goods/getlist2") //只显示增加到第六条的数据
       .then(res => {
-        this.list = res.data;
+        this.list = res.data.slice(6); //去掉前6个再显示
       })
       .catch(function(e) {
         console.log(e);
       });
+
+  },
+  mounted() {
+        axios
+      .get("/goods/getlist2") //只显示增加到第六条的数据
+      .then(res => {
+        this.list = res.data.slice(6); //去掉前6个再显示
+      })
+      .catch(function(e) {
+        console.log(e);
+      });
+
+    this.$eventBus.$on("closeshowdiv", e => {
+      //接收广播显示carlist
+      this.showdiv = e.showdiv;
+    });
   },
   methods: {
     // 拿到token判断有没有登录
     topay() {
       console.log(gettoken(document.cookie.substr(6)));
       if (gettoken(document.cookie.substr(6))) {
-        this.$router.push("jieshuan");
+        this.$router.push("jiesuan");
       } else {
         this.$router.push("login");
       }
@@ -157,6 +173,11 @@ export default {
     },
     mshow() {
       this.showdiv = !this.showdiv;
+      
+      this.$eventBus.$emit("closefooter", {
+        //发广播让footer隐藏
+        mclose: false
+      });
     }
   },
   computed: {
@@ -172,14 +193,15 @@ export default {
     }
   },
   components: {
-    showdialog
+    showdiv
   }
 };
 </script>
 <style  scoped>
 .cartlist {
   font-size: 0.32rem;
-  margin-top: 0.81rem;
+  padding-top: 0.81rem;
+  box-sizing: border-box;
 }
 .ul_list {
   padding-top: 0.01rem;
@@ -228,14 +250,14 @@ export default {
   position: fixed;
   top: 0;
   z-index: 999;
-  background: rebeccapurple;
+  background: white;
   width: 7.5rem;
   height: 0.81rem;
   text-align: center;
   line-height: 0.81rem;
 }
 .mheader p {
-  background: rebeccapurple;
+  background: white;
   width: 100%;
   height: 0.81rem;
   font-size: 0.36rem;

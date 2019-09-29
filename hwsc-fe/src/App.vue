@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 15:19:03
- * @LastEditTime: 2019-09-26 22:15:13
+ * @LastEditTime: 2019-09-27 16:05:15
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -32,17 +32,6 @@
 				]
 			}
 		},
-		mounted(){
-			for (let page of this.pages) {
-        let pathname;
-        if (location.hash.startsWith('#')) {
-          pathname = location.hash.substr(1);
-        } else {
-          pathname = location.pathname;
-        }
-      
-    };
-  },
   mounted() {
     for (let page of this.pages) {
       let pathname;
@@ -86,7 +75,9 @@
 		font-size: 0.25rem;
 		font-weight: bold;
 		box-shadow: -1px -1px 5px lightgray;
-		justify-content: space-around;
+    justify-content: space-around;
+    background: white;
+    z-index: 999;
 	}
 	footer > div {
 		display:flex;

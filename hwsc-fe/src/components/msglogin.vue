@@ -2,7 +2,7 @@
  * @Description: In User Settings Editd
  * @Author: your name
  * @Date: 2019-09-25 20:20:29
- * @LastEditTime: 2019-09-26 14:16:32
+ * @LastEditTime: 2019-09-28 17:47:37
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -36,6 +36,7 @@
 </template>
 <script>
 import axios from "axios";
+import {Toast} from '../toast';
 export default {
   data() {
     return {
@@ -83,6 +84,7 @@ export default {
       }, 1000);
     },
     login() {
+      const _this = this;
       let user = {
         nickname: this.$refs.hwname.value,
         username: this.$refs.hwname.value,
@@ -90,6 +92,13 @@ export default {
       };
       axios.post("/goods/login", user).then(function(s) {
         console.log(s.data);
+             if (s.data.msg =="登录失败") {
+          Toast('登录失败...',1500);
+        }
+        if (s.data.msg =="登录成功") {
+          Toast('登录成功...',1500);
+          _this.$router.push('cart')
+        }
       });
     }
   }

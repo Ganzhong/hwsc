@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-09-23 15:16:23
- * @LastEditTime: 2019-09-25 16:56:55
+ * @LastEditTime: 2019-09-27 11:57:35
  * @LastEditors: Please set LastEditors
  */
 const jwt = require('jsonwebtoken');
@@ -18,6 +18,21 @@ export const address_list = addr_list;
 export function addAddress(address) {
     address_list.push(address)
     localStorage.setItem('goods_list', JSON.stringify(address_list))
+}
+
+let addressStr2 = localStorage.getItem('goods_list_fujia');
+let addr_list2 = [];
+if (addressStr2) {
+    try {
+        addr_list2 = JSON.parse(addressStr2);
+    } catch (err) {
+        addr_list2 = [];
+    }
+}
+export const address_list2 = addr_list2;
+export function addAddress2(address) {
+    address_list2.push(address)
+    localStorage.setItem('goods_list_fujia', JSON.stringify(address_list2))
 }
 
 
