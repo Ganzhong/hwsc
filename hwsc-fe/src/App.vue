@@ -32,17 +32,7 @@
 				]
 			}
 		},
-		mounted(){
-			for (let page of this.pages) {
-        let pathname;
-        if (location.hash.startsWith('#')) {
-          pathname = location.hash.substr(1);
-        } else {
-          pathname = location.pathname;
-        }
-      
-    };
-  },
+	
   mounted() {
     for (let page of this.pages) {
       let pathname;
@@ -87,6 +77,8 @@
 		font-weight: bold;
 		box-shadow: -1px -1px 5px lightgray;
 		justify-content: space-around;
+		background: white;
+		z-index: 999;
 	}
 	footer > div {
 		display:flex;
