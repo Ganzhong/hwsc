@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-27 09:27:19
+ * @LastEditTime: 2019-09-29 10:43:23
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
     <div id="fenlei">
 			<header>
@@ -11,7 +18,6 @@
 				<liebiao></liebiao>
 			</div>
 			<div class="bigbox">
-<<<<<<< HEAD
 				<xinpin v-show="'1' === pps"></xinpin>
 				<huawei v-show="'2' === pps"></huawei>
 				<rongyao v-show="'3' === pps"></rongyao>
@@ -24,10 +30,6 @@
 				<st v-show="'10' === pps"></st>
 				<zengzhi v-show="'11' === pps"></zengzhi>
 				<jisuan v-show="'12' === pps"></jisuan>
-=======
-				<xinpin></xinpin>
-				<huawei style="display: none;"></huawei>
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 			</div>
 		</div>
 </template>
@@ -35,7 +37,6 @@
 	import liebiao from '../components/liebiao.vue';
 	import xinpin from '../components/xinpin.vue';
 	import huawei from '../components/huawei.vue';
-<<<<<<< HEAD
 	import rongyao from '../components/rongyao.vue';
 	import zh from '../components/zh.vue';
 	import diannao from '../components/diannao.vue';
@@ -46,16 +47,11 @@
 	import st from '../components/st.vue';
 	import zengzhi from '../components/zengzhi.vue';
 	import jisuan from '../components/jisuan.vue';
-=======
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 	export default {
 		data(){
 			return {
 			  index : 0,
-<<<<<<< HEAD
 			  pps:'1',
-=======
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 				placeholders: [
 					{name:'Mate 30',color:'red'},
 					{name:'荣耀Play3',color:'red'},
@@ -79,17 +75,13 @@
 					this.index = 0;
 				}
 			},2000);
-<<<<<<< HEAD
 			this.$eventBus.$on('chulaiba',(event)=>{
 				this.pps = event;
 			})
-=======
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 		},
 		components:{
 			liebiao,
 			xinpin,
-<<<<<<< HEAD
 			huawei,
 			rongyao,
 			zh,
@@ -100,10 +92,8 @@
 			tong,
 			st,
 			zengzhi,
-			jisuan
-=======
+			jisuan,
 			huawei
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 		}
 		}
 </script>

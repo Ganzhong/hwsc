@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 15:19:03
- * @LastEditTime: 2019-09-29 09:05:09
+ * @LastEditTime: 2019-09-29 10:35:47
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -32,11 +32,7 @@
 				]
 			}
 		},
-<<<<<<< HEAD
-	
-=======
 		
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
   mounted() {
     for (let page of this.pages) {
       let pathname;
@@ -80,15 +76,9 @@
 		font-size: 0.25rem;
 		font-weight: bold;
 		box-shadow: -1px -1px 5px lightgray;
-<<<<<<< HEAD
 		justify-content: space-around;
 		background: white;
 		z-index: 999;
-=======
-    justify-content: space-around;
-    background: white;
-    z-index: 999;
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 	}
 	footer > div {
 		display:flex;

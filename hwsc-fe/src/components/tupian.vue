@@ -5,7 +5,7 @@
  * @Description: In User Settings Editim
  * @Author: your name
  * @Date: 2019-09-27 09:10:54
- * @LastEditTime: 2019-09-27 09:57:49
+ * @LastEditTime: 2019-09-29 10:48:52
  * @LastEditors: Please set LastEditors
  -->
 =======
@@ -104,17 +104,6 @@
 	.swiper-container-horizontal>.swiper-pagination-bullets{
 		left:2.8rem;
 	}
-<<<<<<< HEAD
-/* 	.wenzi{
-		width:100%;
-		height:1rem;
-		background: red;
-	} */
-=======
-	.wenzi{
-		width:100%;
-		height:1rem;
-		background: red;
-	}
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
+
+
 </style>

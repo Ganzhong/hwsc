@@ -1,11 +1,14 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-27 09:10:54
+ * @LastEditTime: 2019-09-29 10:52:34
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
 	<div class="lie">
 		<ul>
-<<<<<<< HEAD
 			<li @click="getcolor(id)" :class="{current: id.pp === currentid}" v-for="id of ids">{{id.name}}</li>
-=======
-			<li v-for="id of ids">{{id.name}}</li>
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 		</ul>
 	</div>
 </template>
@@ -13,7 +16,6 @@
 	export default{
 		data(){
 			return {
-<<<<<<< HEAD
 				currentid:'1',
 				ids:[
 					{pp:'1',name:'新品'},
@@ -36,23 +38,7 @@
 				this.currentid = id.pp;
 				this.$eventBus.$emit('chulaiba',id.pp);
 			}
-=======
-				ids:[
-					{name:'新品'},
-					{name:'华为手机'},
-					{name:'荣耀手机'},
-					{name:'智慧屏'},
-					{name:'笔记本&平板'},
-					{name:'智能穿戴'},
-					{name:'智能家居'},
-					{name:'专属配件'},
-					{name:'通用配件'},
-					{name:'生态产品'},
-					{name:'增值服务'},
-					{name:'智能计算'},
-				]
-			}
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
+	
 		}
 	}
 </script>
@@ -75,11 +61,8 @@
 		margin-bottom: 0.6rem;
 		margin-top: 0.1rem;
 	}
-<<<<<<< HEAD
 	.current{
 		color:red;
 		border-right: 0.05rem red solid;
 	}
-=======
->>>>>>> 499a1a6ae3b261ae926a9794947b2b6636dca7a2
 </style>
