@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 15:19:03
- * @LastEditTime: 2019-09-29 10:35:47
+ * @LastEditTime: 2019-09-29 19:58:28
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -48,8 +48,6 @@
     }
 
     this.$eventBus.$on("closefooter", e => {
-      console.log("--------appvue mounted-233-");
-      console.log(e.mclose);
       this.mclose = e.mclose
     });
   },

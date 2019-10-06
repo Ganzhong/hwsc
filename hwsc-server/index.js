@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-05 08:48:14
- * @LastEditTime: 2019-09-28 19:27:00
+ * @LastEditTime: 2019-09-29 21:00:22
  * @LastEditors: Please set LastEditors
  */
 const mex = require("express");
@@ -28,6 +28,7 @@ const whitelist = [
   "/goods/login",
   "/goods/insertgoodslist",
   "/goods/insertgoodslist2",//加多条数据 以数组形式加
+  "/goods/removegoodslist",//del
 ];
 app.use(function(req, res, next) { //中间键
   if (whitelist.indexOf(req.url) !== -1) {

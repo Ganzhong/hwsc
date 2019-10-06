@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-25 17:19:12
- * @LastEditTime: 2019-09-28 17:42:56
+ * @LastEditTime: 2019-09-29 19:23:30
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -65,6 +65,7 @@ export default {
       //发广播让footer显示
       mclose: true
     });
+    // this.$eventBus.$off("closefooter",null)
   },
   methods: {
     msglogin() {

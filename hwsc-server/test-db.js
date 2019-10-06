@@ -2,11 +2,12 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-04 21:33:23
- * @LastEditTime: 2019-09-28 19:26:41
+ * @LastEditTime: 2019-10-05 17:38:58
  * @LastEditors: Please set LastEditors
  */
 //mongodb数据库 增 删 查 改 的封装 并链接数据库
 const mongodb = require('mongodb');  // 映入 mongodb 官方依赖模块   npm install mongodb --save
+var ObjectId = require('mongodb').ObjectID;//Work
 const MongoClient = mongodb.MongoClient;  // 返回 mongodb 客户端对象
 const DB_URL = 'mongodb://localhost:27017';   // mongodb 数据库连接字符串
 const mydb = 'hwsc';//库名
@@ -82,12 +83,12 @@ async function updategoodslist(filter, setObj) {
     });
 }
 //删
-async function removegoodslist(filter) { //给条件{age:{$gt:11}}
+async function removegoodslist(filter) { //给条件 通过 id 来删除
 
     const client = await getClient();
     const testDB = client.db(mydb);
     return new Promise(function (resolve, reject) {
-        testDB.collection(biao).remove(filter, function (err, cmdResult) {
+        testDB.collection(biao).remove({ "_id": ObjectId(filter._id)}, function (err, cmdResult) {
             if (err) {
                 return reject(err)
             }

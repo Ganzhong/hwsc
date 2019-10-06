@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-24 16:01:11
- * @LastEditTime: 2019-09-29 17:47:11
+ * @LastEditTime: 2019-10-05 18:11:28
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -10,6 +10,10 @@
     <div>
       <div class="mheader clearfix">
         <p>购物车</p>
+        <span
+          @click="del"
+          style="position: absolute;top: 0;right: 0.5rem;font-size: 0.4rem;"
+        >{{txt}}</span>
       </div>
 
       <div class="cartlist">
@@ -47,7 +51,10 @@
               <span>华为小天鹅蓝牙免提音箱 ...</span>
               <span style="margin-left: 1rem;">x 1</span>
             </div>
-            <div v-show="mli.price>350" style="float:left;width: 100%;float: left;margin-top: 0.3rem; ">
+            <div
+              v-show="mli.price>350"
+              style="float:left;width: 100%;float: left;margin-top: 0.3rem; "
+            >
               <p style="text-align: center;font-weight: bold;font-size: 0.34rem;">优惠搭配</p>
               <ul class="mul2" @click="mshow">
                 <li>
@@ -95,12 +102,21 @@
             </div>
           </li>
         </ul>
-        <footer>
+        <footer v-show="dodel">
           <input type="checkbox" @click="checkall($event)" :checked="all" style="float: left;" />
           <span style="float: left;">全选</span>
           <button @click="topay">结算</button>
           <span style="color:red;display: inline-block;float: right; width: 1.3rem;">￥{{allcost}}</span>
           <span style="display: inline-block;float: right;">总计:</span>
+        </footer>
+        <footer v-show="!dodel">
+          <input type="checkbox" @click="checkall($event)" :checked="all" style="float: left;" />
+          <span style="float: left;">全选</span>
+          <button @click="deldata($event)">del</button>
+          <span
+            style="visibility: hidden; color:red;display: inline-block;float: right; width: 1.3rem;"
+          >￥{{allcost}}</span>
+          <span style="visibility: hidden; display: inline-block;float: right;">总计:</span>
         </footer>
       </div>
     </div>
@@ -114,46 +130,28 @@ import showdiv from "./showdiv";
 export default {
   data() {
     return {
+      dodel: true,
+      txt: "编辑",
       mshowdiv: false,
       datalist: [],
       list: []
     };
   },
-  // updated(){
-  //   axios
-  //     .get("/goods/getlist2") //只显示增加到第六条的数据
-  //     .then(res => {
-  //       this.list = res.data.slice(6); //去掉前6个再显示
-  //     })
-  //     .catch(function(e) {
-  //       console.log(e);
-  //     });
 
-  // },
   mounted() {
-    axios
-      .get("/goods/getlist2") //只显示增加到第六条的数据
-      .then(res => {
-        this.list = res.data.slice(6); //去掉前6个再显示
-      })
-      .catch(function(e) {
-        console.log(e);
-      });
+    this.showlist();
 
     this.$eventBus.$on("closeshowdiv", e => {
       //接收广播显示carlist
       this.mshowdiv = e.showdiv;
       //同时请求最新数据
-      axios
-        .get("/goods/getlist2") //只显示增加到第六条的数据
-        .then(res => {
-          this.list = res.data.slice(6); //去掉前6个再显示
-        })
-        .catch(function(e) {
-          console.log(e);
-        });
+      this.showlist();
     });
     console.log("=====mounted=====");
+    this.$eventBus.$emit("closefooter", {
+      //发广播让footer隐藏
+      mclose: true
+    });
   },
   methods: {
     // 拿到token判断有没有登录
@@ -188,6 +186,40 @@ export default {
         //发广播让footer隐藏
         mclose: false
       });
+    },
+    del() {
+      this.dodel = !this.dodel;
+      this.txt = this.dodel ? "编辑" : "完成";
+    },
+    deldata(e) {
+      //
+      // this.checkall(e);
+      console.log("-------------");
+      console.log(this.datalist);
+      console.log(this.datalist[0]._id);
+      let g = { _id: this.datalist[0]._id };
+      axios
+        .post("/goods/removegoodslist", g) //删除数据
+        .then(function(s) {})
+        .catch(function(e) {
+          console.log(e);
+        });
+      this.showlist();
+      this.datalist = [];
+    },
+    showlist() {
+      axios
+        .get("/goods/getlist2") //只显示增加到第六条的数据
+        .then(res => {
+          this.list = res.data.slice(6); //去掉前6个再显示
+          this.$emit("cartlistshow", { //向父组件传值
+            clshow: res.data.length > 6 ? false : true
+          });
+          return this.list;
+        })
+        .catch(function(e) {
+          console.log(e);
+        });
     }
   },
   computed: {
@@ -202,15 +234,7 @@ export default {
       return j;
     },
     all_list() {
-      axios
-        .get("/goods/getlist2") //只显示增加到第六条的数据
-        .then(res => {
-          this.list = res.data.slice(6); //去掉前6个再显示
-          return this.list;
-        })
-        .catch(function(e) {
-          console.log(e);
-        });
+      this.showlist();
     }
   },
   beforeCreate() {
@@ -225,7 +249,9 @@ export default {
   beforeUpdate() {
     console.log("=====beforeUpdate=====");
   },
-  // updated(){console.log("=====updated=====");},
+  updated() {
+    console.log("=====updated=====");
+  },
   beforeDestroy() {
     console.log("=====beforeDestroy=====");
   },

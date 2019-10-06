@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-23 21:07:47
- * @LastEditTime: 2019-09-29 16:19:23
+ * @LastEditTime: 2019-10-05 18:12:35
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -25,8 +25,9 @@
         </ul>
       </section>
     </div>
-    
-    <cartlist v-if="!show"></cartlist>
+
+    <cartlist v-if="!show" @cartlistshow = "getclshow"></cartlist>
+    <!-- 接到子组件的值 @cartlistshow (这个是频道) = "getclshow"(这个是方法)  -->
   </div>
 </template>
 <script>
@@ -48,31 +49,24 @@ export default {
       .get("/goods/getlist2")
       .then(res => {
         this.datalist = res.data;
-        
-          _this.show = (res.data.length > 6)? false :true; //查看有没有数据有就显示列表没有就显示空购物车
-          console.log('====>')
+
+        _this.show = res.data.length > 6 ? false : true; //查看有没有数据有就显示列表没有就显示空购物车
+        console.log("====>");
         console.log(_this.show);
         console.log(res.data.length);
-          
       })
       .catch(function(e) {
         console.log(e);
       });
-
-     this.$eventBus.$emit("closefooter", {
-      //发广播让footer隐藏
+  },
+  beforeDestroy: function() {
+    //销毁后
+    this.$eventBus.$emit("closefooter", {
+      //发广播让footer显示
       mclose: true
     });
- 
-    },
-  // beforeDestroy: function() {
-  //   //销毁后
-  //   this.$eventBus.$emit("closefooter", {
-  //     //发广播让footer显示
-  //     mclose: false
-  //   });
-
-  // },
+    // this.$eventBus.$off("closefooter",null)
+  },
   methods: {
     joincart(i) {
       const _this = this;
@@ -87,9 +81,9 @@ export default {
         }
       ];
 
-console.log('--------')
-console.log(this.$refs)
-console.log(this.$refs.desc[i].desc)
+      console.log("--------");
+      console.log(this.$refs);
+      console.log(this.$refs.desc[i].desc);
       //存本地
       // addAddress(goods);
 
@@ -97,28 +91,41 @@ console.log(this.$refs.desc[i].desc)
       // let addressStr = localStorage.getItem('goods_list');
 
       axios
-        // .post("/goods/insertgoodslist2", JSON.parse(addressStr))
         .post("/goods/insertgoodslist2", goods) //这个是以数组的方式加入 所以必须传数组
         .then(function(s) {
-          // if (!s.data.success) {
-          //   alert("对不起,您无权操作....");
-          // }
-              _this.show = !_this.show;
+          _this.show = !_this.show;
         })
         .catch(function(e) {
           console.log(e);
         });
-
-     
+    },
+    getclshow(d){
+      this.show = d.clshow;
+      console.log('--.')
+      console.log(d)
     }
   },
-    beforeCreate(){console.log("=====beforeCreate==...=====");},
-  created(){console.log("=====created=...====");},
-  beforeMount(){console.log("=====beforeMount==...===");},
-  beforeUpdate(){console.log("=====beforeUpdate==...===");},
-  updated(){console.log("=====updated==...===");},
-  beforeDestroy(){console.log("=====beforeDestroy==...===");},
-  destroyed(){console.log("=====destroyed==...===");},
+  beforeCreate() {
+    console.log("=====beforeCreate==...=====");
+  },
+  created() {
+    console.log("=====created=...====");
+  },
+  beforeMount() {
+    console.log("=====beforeMount==...===");
+  },
+  beforeUpdate() {
+    console.log("=====beforeUpdate==...===");
+  },
+  updated() {
+    console.log("=====updated==...===");
+  },
+  beforeDestroy() {
+    console.log("=====beforeDestroy==...===");
+  },
+  destroyed() {
+    console.log("=====destroyed==...===");
+  },
   components: {
     hcart,
     cartlist
